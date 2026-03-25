@@ -1,66 +1,29 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from "next/link";
+import CategoryCard from "./-components/-categorycard";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div  className={"home-page"}>
+      <div className="intro">
+        <h1 className="font2 ">
+          NEW WINTER <br></br> COLLECTION
+        </h1>
+        <div>
+          50% OFF 2026
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="small">
+            The standard chunk of Lorem ipsum used since the is reproduced below for those interested. Sections 1.10.32 and 11033 from de Finibus Bonorum et Malorum.
         </div>
-      </main>
+        <a className="font2 ">
+          Shop Now
+        </a>
+      </div>
+      <div className="categories">
+        <CategoryCard i={1} url={"/categoriesP"} title={"men"}/>
+        <CategoryCard i={2} url={"/categoriesP"}  title={"kids"}/>
+        <CategoryCard i={3} url={"/categoriesP"}  title={"shoase"}/>
+        <CategoryCard i={4} url={"/categoriesP"}  title={"womwen"}/>
+      </div>
     </div>
   );
 }
