@@ -152,7 +152,6 @@ export default function cartP(){
         <div className="confirm-order">
             <h1>confirm order</h1>
             <form action="" onSubmit={(e)=>{onSubmitPay(e)}}>
-                <label htmlFor=""></label>
                 <input placeholder="Visa Card Number" className="main-input" type="number" required />
                 <input placeholder="Card Holder Name" className="main-input" type="text" required />
                 <input type="text" placeholder="CVV" required />

@@ -24,7 +24,6 @@ export default function shop (){
     const dispatch=useDispatch()
     const handelAddProducttoCart=(item)=>{
         dispatch(addToCart({...item ,count:1}))
-       
     }
     const handelAddProducttoFav=(item)=>{
         dispatch(addToFav(item))
@@ -41,7 +40,7 @@ export default function shop (){
         </aside>
         <main>
             <form className="search true">
-                <input value={search} type="text" onChange={(e)=>{setSearch(e.target.value)}} />
+                <input placeholder="search." value={search} type="text" onChange={(e)=>{setSearch(e.target.value)}} />
                 <button>
                     <span className="material-symbols-outlined">
                         search
