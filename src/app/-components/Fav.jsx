@@ -18,12 +18,15 @@ export default function Fav (){
         </button>
         <div  className={"products "+activ}>
             {
-                favorets.map((item,i)=>{return <Link href={`../productP/${item.id}`} key={i} className="card">
-                    <img  src={item.images[0]} alt="" />
+                favorets.map((item,i)=>{return <div key={i} className="card">
+                    
+                    <Link href={`../productP/${item.id}`} >
+                        <img  src={item.images[0]} alt="" />
+                    </Link>
                     <div className="title">
-                        {item.title}  <button><span className="material-symbols-outlined">close</span> </button>
+                        {item.title}  <button onClick={()=>{HandelRemoveFromFave(item)}} ><span className="material-symbols-outlined">close</span> </button>
                     </div>
-                </Link> })
+                </div> })
             }
         </div>
     </div>
