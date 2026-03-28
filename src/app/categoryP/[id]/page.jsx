@@ -3,6 +3,7 @@ import Link from "next/link"
 import {use, useEffect, useState} from "react"
 import { useDispatch } from "react-redux"
 import { addToCart } from "@/app/redux/features/cartSlice";
+import { addToFav } from "@/app/redux/features/favSlice";
 
 export default function profile ({params}) {
     const {id}=use(params)
@@ -12,6 +13,9 @@ export default function profile ({params}) {
     const dispatch=useDispatch()
     const handelAddProducttoCart=(item)=>{
         dispatch(addToCart({...item ,count:1}))
+    }
+    const handelAddProducttoFav=(item)=>{
+        dispatch(addToFav(item))
     }
     useEffect (()=>{
         fetch(`https://api.escuelajs.co/api/v1/categories/${id}/products`)
@@ -48,7 +52,7 @@ export default function profile ({params}) {
                                     </span>
                                 </button>
                                 <button>
-                                    <span className="material-symbols-outlined">
+                                    <span onClick={()=>{handelAddProducttoFav(item)}} className="material-symbols-outlined">
                                        favorite
                                     </span>
                                 </button>
