@@ -19,8 +19,8 @@ export default function CategoryCard(props){
         }
     },[])
     
-    return <Link ref={cardREF} href={props.url} className={"div"+props.i}>
-        <div className="cover"></div>
+    return <Link style={{backgroundImage:`linear-gradient(var(--foreground), rgba(255, 0, 0, 0)),url(${props.image})`}}  ref={cardREF} href={props.url} className={"div"+props.i}>
+        <div  className="cover"></div>
         {props?.title}
     </Link>
 }

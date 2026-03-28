@@ -3,6 +3,7 @@ import "./globals.css";
 import Link from "next/link";
 import Providers from "./providers";
 import Nav from "./-components/Nav";
+import Fav from "./-components/Fav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <Nav/>
           {children}
+          <Fav/>
         </Providers>
       </body>
     </html>

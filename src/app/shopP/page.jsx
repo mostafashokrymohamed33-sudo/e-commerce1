@@ -3,6 +3,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/app/redux/features/cartSlice";
+import { addToFav  } from "@/app/redux/features/favSlice";
 
 export default function shop (){
     const [products,setProducts]=useState([]);
@@ -13,6 +14,7 @@ export default function shop (){
     useEffect(()=>{
         fetch("https://api.escuelajs.co/api/v1/products").then(res=>res.json())
         .then(res=>{console.log(res);setProducts(res)})
+        .catch(er=>{console.error(er)})
         fetch("https://api.escuelajs.co/api/v1/categories").then(res=>res.json())
         .then(res=>{console.log(res);setCategories(res)})
     },[])
@@ -23,6 +25,9 @@ export default function shop (){
     const handelAddProducttoCart=(item)=>{
         dispatch(addToCart({...item ,count:1}))
        
+    }
+    const handelAddProducttoFav=(item)=>{
+        dispatch(addToFav(item))
     }
 
     return <div className="shop-page">
@@ -60,7 +65,7 @@ export default function shop (){
                                        shopping_cart
                                     </span>
                                 </button>
-                                <button>
+                                <button onClick={()=>{handelAddProducttoFav(item)}}>
                                     Add to fav
                                     <span className="material-symbols-outlined">
                                        favorite

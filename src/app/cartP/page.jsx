@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "@/app/redux/features/cartSlice";
 export default function cartP(){
     let cart=useSelector(state=>state.cart)
-    console.log(cart)
-    
+    const [orderconirmed,setOrderConfirmed]=useState(false);
     const dispatch=useDispatch()
     const handelRemoveFromCart=(id)=>{
         dispatch(removeFromCart(id)) 
@@ -92,6 +91,15 @@ export default function cartP(){
 
     const minLng =Math.min(...locations.map(i=>i.longitude))
     const maxLng =Math.max(...locations.map(i=>i.longitude))
+
+    function onSubmitPay(e){
+        if(orderconirmed)return
+       e.preventDefault();
+       setOrderConfirmed(true);
+       setTimeout(()=>{
+        setOrderConfirmed(false)
+       },6000)
+    }
     return <div className="cart-page">
         <h1 className="font2">cart content</h1>
         <div className="products">{
@@ -132,7 +140,7 @@ export default function cartP(){
                 locations.map((ietm,i)=>{
                     const x =((ietm.longitude-minLng)/(maxLng-minLng))*100
                     const y =((ietm.latitude-minLat)/(maxLat-minLat))*100
-                    return <div key={i} style={{left:(x+"%"),top:(y+"%")}} onClick={()=>{setLocationIndex(i)}} className="card">
+                    return <div  key={i} style={{left:(x+"%"),top:(y+"%")}} onClick={()=>{setLocationIndex(i)}} className="card">
                         {ietm.name}<br/>
                         <small>
                             {ietm.description}
@@ -141,8 +149,23 @@ export default function cartP(){
                 })
             }
         </div>
-        <div className="confirm order">
+        <div className="confirm-order">
             <h1>confirm order</h1>
+            <form action="" onSubmit={(e)=>{onSubmitPay(e)}}>
+                <label htmlFor=""></label>
+                <input placeholder="Visa Card Number" className="main-input" type="number" required />
+                <input placeholder="Card Holder Name" className="main-input" type="text" required />
+                <input type="text" placeholder="CVV" required />
+                <input type="text" placeholder="DATE MM/YY" required />
+                <input className="button" type="submit" value="confirm order" />
+            </form>
         </div>
+        {
+            orderconirmed&&(<div className={"noti"}>
+                order confirmed 
+                <hr/>
+                location : {chosedLocation.name}
+            </div>)
+        }
     </div>
 }

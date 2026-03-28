@@ -1,7 +1,18 @@
+'use client'
 import Link from "next/link";
 import CategoryCard from "./-components/-categorycard";
+import { use, useEffect, useState } from "react";
 
-export default function Home() {
+export default function Home(prmas) {
+  const[categories,setCategpries]=useState([])
+  const {id}=use
+  useEffect(()=>{
+    fetch("https://api.escuelajs.co/api/v1/categories").then(res=>res.json())
+    .then(res=>{
+      console.log(res)
+      setCategpries(res)
+    })
+  },[])
   return (
     <div  className={"home-page"}>
       <div className="intro">
@@ -14,15 +25,16 @@ export default function Home() {
         <div className="small">
             The standard chunk of Lorem ipsum used since the is reproduced below for those interested. Sections 1.10.32 and 11033 from de Finibus Bonorum et Malorum.
         </div>
-        <a className="font2 ">
+        <Link className="font2" href={"../shopP"}>
           Shop Now
-        </a>
+        </Link>
       </div>
       <div className="categories">
-        <CategoryCard i={1} url={"/categoriesP"} title={"men"}/>
-        <CategoryCard i={2} url={"/categoriesP"}  title={"kids"}/>
-        <CategoryCard i={3} url={"/categoriesP"}  title={"shoase"}/>
-        <CategoryCard i={4} url={"/categoriesP"}  title={"womwen"}/>
+        {
+          categories.length<4?"":categories.slice(0, 4).map((item,i)=>{
+            return <CategoryCard key={i} i={i+1} url={`/categoryP/${item.id}`} image={item?.image} title={item?.name}/>
+          })
+        }
       </div>
     </div>
   );

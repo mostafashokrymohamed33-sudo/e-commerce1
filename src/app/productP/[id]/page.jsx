@@ -3,6 +3,7 @@
 import { use, useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/app/redux/features/cartSlice";
+import Link from "next/link";
 
 export default function ProductP({ params }) {
 
@@ -42,9 +43,7 @@ export default function ProductP({ params }) {
                      data?.description
                     }
                 </h5>
-                <button>
-                    buy now 
-                </button>
+                <Link  onClick={()=>{handleAddToCart()}} href={"../cartP"} className="buy">buy now </Link>
                 <button onClick={()=>{handleAddToCart()}}>
                     add to the cart 
                 </button>

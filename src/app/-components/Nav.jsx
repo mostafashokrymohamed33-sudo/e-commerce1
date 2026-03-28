@@ -5,7 +5,6 @@ import { useSelector } from "react-redux"
 
 export default function Nav (){
     const cart=useSelector(state=>state.cart)    
-    console.log(cart)
     return <nav>
               <h3 className="font2">logo.com</h3>
               <div className="links">
@@ -24,7 +23,7 @@ export default function Nav (){
                     shopping_cart
                   </span>
                 </Link>
-                <Link href={"./profile/3"}>
+                <Link href={"../profile/3"}>
                   <span className="material-symbols-outlined">
                     person
                   </span>
